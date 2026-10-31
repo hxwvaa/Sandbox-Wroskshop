@@ -1,0 +1,10 @@
+name: campusaid-agent-v2
+# Run ONLY before the workshop to download model weights.
+# This temporary service has normal network access. Stop it before exercises.
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - model-cache:/root/.ollama
+volumes:
+  model-cache:

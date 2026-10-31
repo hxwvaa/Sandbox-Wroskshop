@@ -1,0 +1,5 @@
+{
+  "student_001": {"owner": "student_001", "type": "student_profile", "name": "Demo Student", "course": "AI Foundations", "status": "active"},
+  "case_admin": {"owner": "instructor_admin", "type": "restricted_review", "department": "Training", "private_training_token": "SYNTHETIC-PRIVATE-ALPHA-2026", "note": "Entirely fictional record, never a real secret"},
+  "case_public": {"owner": "instructor_admin", "type": "staff_summary", "note": "Fictional lab-only content"}
+}

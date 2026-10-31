@@ -1,0 +1,41 @@
+name: campusaid-agent-v2
+services:
+  ollama:
+    image: ollama/ollama:latest
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+    volumes:
+      - model-cache:/root/.ollama
+    networks:
+      - sandbox
+    security_opt:
+      - no-new-privileges:true
+
+  lab:
+    build: .
+    depends_on:
+      - ollama
+    environment:
+      OLLAMA_API: http://ollama:11434/api/chat
+      OLLAMA_MODEL: qwen2.5:1.5b
+      PYTHONDONTWRITEBYTECODE: '1'
+    working_dir: /workspace
+    volumes:
+      - .:/workspace:rw
+    command: ["sleep", "infinity"]
+    networks:
+      - sandbox
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  sandbox:
+    internal: true
+
+volumes:
+  model-cache:
